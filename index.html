@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Foldit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clock Widget</title>
@@ -10,7 +12,7 @@
       --text: #ffffff;
       --shadow: rgba(0, 0, 0, 0.45);
       --panel: transeparent;
-      --font: "Anton";
+      --font: "Anton", sans-serif;
       --bg: url("https://i.pinimg.com/1200x/35/30/c8/3530c890bb8ef9dfbcea018febb50fe2.jpg");
     }
 
@@ -109,7 +111,7 @@
       const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'][now.getDay()];
 
       document.getElementById('time').textContent = `${hh}:${mm}:${ss}`;
-      document.getElementById('date').textContent = `${year}/${month}/${day}${weekday}`;
+      document.getElementById('date').textContent = `${year}/${month}/${day} ${weekday}`;
     }
 
     updateClock();

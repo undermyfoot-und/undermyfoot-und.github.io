@@ -94,20 +94,22 @@
   <div class="widget">
     <div class="content">
       <div class="time" id="time">00:00</div>
-      <div class="label" id="label">HOURS : MINUTES</div>
+      <div class="label" id="label">READY</div>
 
       <div class="controls">
         <button id="toggleBtn">Start</button>
+        <button id="resetBtn">Reset</button>
       </div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = "countup_clock_state_v1";
+    const STORAGE_KEY = "countup_clock_state_v2";
 
     const timeEl = document.getElementById("time");
     const labelEl = document.getElementById("label");
     const toggleBtn = document.getElementById("toggleBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
     let state = loadState();
     let timerId = null;
@@ -172,25 +174,40 @@
 
     function startTimer() {
       if (state.running) return;
+
       state.running = true;
       state.startAt = Date.now();
       saveState();
-      render();
+
       if (timerId) clearInterval(timerId);
       timerId = setInterval(render, 1000);
+      render();
     }
 
     function pauseTimer() {
       if (!state.running) return;
+
       state.elapsedMs = getElapsedMs();
       state.running = false;
       state.startAt = null;
       saveState();
-      render();
+
       if (timerId) {
         clearInterval(timerId);
         timerId = null;
       }
+      render();
+    }
+
+    function resetTimer() {
+      state = defaultState();
+      saveState();
+
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+      render();
     }
 
     toggleBtn.addEventListener("click", () => {
@@ -200,6 +217,8 @@
         startTimer();
       }
     });
+
+    resetBtn.addEventListener("click", resetTimer);
 
     // 起動時に、前回の状態を復元
     if (state.running) {

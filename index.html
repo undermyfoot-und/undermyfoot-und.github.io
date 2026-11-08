@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-　<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-　<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Foldit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clock Widget</title>
@@ -12,7 +10,7 @@
       --text: #ffffff;
       --shadow: rgba(0, 0, 0, 0.45);
       --panel: rgba(0, 0, 0, 0.28);
-      --font: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      --font: "Foldit", sans-serif;
       --bg: url("https://i.pinimg.com/1200x/35/30/c8/3530c890bb8ef9dfbcea018febb50fe2.jpg");
     }
 
@@ -60,11 +58,11 @@
       padding: 28px 36px;
       border-radius: 24px;
       background: var(--panel);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: transeparent;
+      -webkit-backdrop-filter: none;
       text-align: center;
       color: var(--text);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: none;
       min-width: 280px;
     }
 
@@ -115,7 +113,7 @@
       const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'][now.getDay()];
 
       document.getElementById('time').textContent = `${hh}:${mm}:${ss}`;
-      document.getElementById('date').textContent = `${year}年${month}月${day}日（${weekday}）`;
+      document.getElementById('date').textContent = `${year}/${month}/${day}（${weekday}）`;
     }
 
     updateClock();

@@ -62,14 +62,6 @@
       box-sizing: border-box;
     }
 
-    .month {
-      font-size: clamp(26px, 4.5vw, 52px);
-      letter-spacing: 0.06em;
-      line-height: 1;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -115,7 +107,6 @@
     <div class="overlay"></div>
 
     <div class="content">
-      <div class="month" id="monthLabel">MONTH YEAR</div>
       <div class="weekdays">
         <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
       </div>
@@ -125,7 +116,6 @@
 
   <script>
     const grid = document.getElementById("calendarGrid");
-    const monthLabel = document.getElementById("monthLabel");
 
     const now = new Date();
     const year = now.getFullYear();
@@ -135,13 +125,6 @@
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
     const startDay = firstDay.getDay();
-
-    const monthNames = [
-      "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
-      "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
-    ];
-
-    monthLabel.textContent = `${monthNames[month]} ${year}`;
 
     for (let i = 0; i < startDay; i++) {
       const cell = document.createElement("div");

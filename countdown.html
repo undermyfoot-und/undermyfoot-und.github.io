@@ -1,26 +1,114 @@
-<script>
-  // 共通テスト初日（必要なら年だけ変えてください）
-  const targetDate = new Date("2027-01-16T09:00:00");
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown Widget</title>
 
-  function updateCountdown() {
-    const now = new Date();
+  <link href="https://fonts.googleapis.com/css2?family=Foldit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    let diff = targetDate - now;
+  <style>
+    :root {
+      --text: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.45);
+      --font: "Foldit", sans-serif;
+      --bg: url("https://i.pinimg.com/1200x/35/30/c8/3530c890bb8ef9dfbcea018febb50fe2.jpg");
+    }
 
-    if (diff < 0) diff = 0;
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: var(--font);
+      background: #000;
+    }
 
-    document.getElementById("time").textContent =
-      `${days} Days`;
+    .widget {
+      width: 100vw;
+      height: 100vh;
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    document.getElementById("date").textContent =
-      `${String(hours).padStart(2,"0")} : ${String(minutes).padStart(2,"0")} : ${String(seconds).padStart(2,"0")}`;
-  }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+    }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 28px 36px;
+      border-radius: 24px;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      text-align: center;
+      color: var(--text);
+      box-shadow: none;
+      min-width: 280px;
+    }
+
+    .time {
+      font-size: clamp(42px, 9vw, 96px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-shadow: 0 2px 10px var(--shadow);
+    }
+
+    .date {
+      margin-top: 10px;
+      font-size: clamp(14px, 2.2vw, 22px);
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 8px var(--shadow);
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="time" id="time">00 Days</div>
+      <div class="date" id="date">00 : 00 : 00</div>
+    </div>
+  </div>
+
+  <script>
+    const targetDate = new Date("2027-01-16T09:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = targetDate - now;
+      if (diff < 0) diff = 0;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("time").textContent = `${days} Days`;
+      document.getElementById("date").textContent =
+        `${String(hours).padStart(2,"0")} : ${String(minutes).padStart(2,"0")} : ${String(seconds).padStart(2,"0")}`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

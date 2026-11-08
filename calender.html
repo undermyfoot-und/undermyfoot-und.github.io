@@ -23,21 +23,22 @@
       width: 100%;
       height: 100%;
       margin: 0;
+      background: transparent;
     }
 
     body {
       overflow: hidden;
-      background: #000;
       font-family: var(--font);
     }
 
     .widget {
       width: 100vw;
       height: 100vh;
-      position: relative;
+      position: fixed;
+      inset: 0;
       background-image: var(--bg);
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       background-repeat: no-repeat;
       display: flex;
       align-items: center;
@@ -47,7 +48,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: transeparent;
+      background: transparent;
     }
 
     .content {

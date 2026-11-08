@@ -9,8 +9,8 @@
     :root {
       --text: #ffffff;
       --shadow: rgba(0, 0, 0, 0.45);
-      --panel: rgba(0, 0, 0, 0.28);
-      --font: "Foldit", sans-serif;
+      --panel: transeparent;
+      --font: "iceland", sans-serif;
       --bg: url("https://i.pinimg.com/1200x/35/30/c8/3530c890bb8ef9dfbcea018febb50fe2.jpg");
     }
 
@@ -45,11 +45,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.18),
-        rgba(0, 0, 0, 0.38)
-      );
+      background: transeparent;
     }
 
     .content {
@@ -58,7 +54,7 @@
       padding: 28px 36px;
       border-radius: 24px;
       background: var(--panel);
-      backdrop-filter: transeparent;
+      backdrop-filter: none;
       -webkit-backdrop-filter: none;
       text-align: center;
       color: var(--text);
@@ -113,7 +109,7 @@
       const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'][now.getDay()];
 
       document.getElementById('time').textContent = `${hh}:${mm}:${ss}`;
-      document.getElementById('date').textContent = `${year}/${month}/${day}（${weekday}）`;
+      document.getElementById('date').textContent = `${year}/${month}/${day}${weekday}`;
     }
 
     updateClock();

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+　<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+　<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clock Widget</title>
@@ -10,7 +13,7 @@
       --shadow: rgba(0, 0, 0, 0.45);
       --panel: rgba(0, 0, 0, 0.28);
       --font: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      --bg: url("BACKGROUND_IMAGE_URL");
+      --bg: url("https://i.pinimg.com/1200x/35/30/c8/3530c890bb8ef9dfbcea018febb50fe2.jpg");
     }
 
     html, body {
@@ -94,8 +97,7 @@
     <div class="overlay"></div>
     <div class="content">
       <div class="time" id="time">00:00:00</div>
-      <div class="date" id="date">0000年0月0日</div>
-      <div class="small">Notion embed ready</div>
+      <div class="date" id="date">0000/0/0</div>
     </div>
   </div>
 
@@ -110,7 +112,7 @@
       const year = now.getFullYear();
       const month = now.getMonth() + 1;
       const day = now.getDate();
-      const weekday = ['日', '月', '火', '水', '木', '金', '土'][now.getDay()];
+      const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'][now.getDay()];
 
       document.getElementById('time').textContent = `${hh}:${mm}:${ss}`;
       document.getElementById('date').textContent = `${year}年${month}月${day}日（${weekday}）`;
